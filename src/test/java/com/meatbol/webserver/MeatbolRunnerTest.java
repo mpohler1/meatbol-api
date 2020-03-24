@@ -56,4 +56,29 @@ class MeatbolRunnerTest {
         String actualOutput = MeatbolRunner.runMeatbolInterpreter(pathToSimpleForLoopCode);
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    void meatbol_runner_does_not_throw_IOException_when_given_invalid_filepath() {
+        try {
+            String pathToSimpleForLoopCode = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
+            String pathToNonExistentFile = pathToSimpleForLoopCode.replace("simpleFor.txt", "nonexistentFile.txt");
+            MeatbolRunner.runMeatbolInterpreter(pathToNonExistentFile);
+        } catch (IOException e) {
+            fail("MeatbolRunner.runMeatbolInterpreter should not throw an IOException when given an invalid filepath.");
+        }
+    }
+
+    @Test
+    void meatbol_runner_returns_interpreter_output_when_given_invalid_filepath() throws IOException {
+        String pathToSimpleForLoopCode = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
+        String pathToNonExistentFile = pathToSimpleForLoopCode.replace("simpleFor.txt", "nonexistentFile.txt");
+
+        String expectedOutput = "Line 0 Column 0 Error reading file or file does not exist, File: /D:/mason/Documents/software_projects/meatbol-webserver/target/test-classes/nonexistentFile.txt\n" +
+                "\tat meatbol.FileHandler.readFile(FileHandler.java:76)\n" +
+                "\tat meatbol.Scanner.<init>(Scanner.java:78)\n" +
+                "\tat meatbol.Meatbol.main(Meatbol.java:46)\n";
+
+        String actualOutput = MeatbolRunner.runMeatbolInterpreter(pathToNonExistentFile);
+        assertEquals(expectedOutput, actualOutput);
+    }
 }
