@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class MeatbolOutput {
     private boolean ioError;
-    private String output;
+    private String text;
 
-    public MeatbolOutput(boolean ioError, String output) {
+    public MeatbolOutput(boolean ioError, String text) {
         this.ioError = ioError;
-        this.output = output;
+        this.text = text;
     }
 }
