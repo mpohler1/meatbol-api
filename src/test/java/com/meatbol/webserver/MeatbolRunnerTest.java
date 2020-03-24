@@ -32,4 +32,28 @@ class MeatbolRunnerTest {
         String acualOutput = MeatbolRunner.runMeatbolInterpreter("");
         assertEquals(expectedOutput, acualOutput);
     }
+
+    @Test
+    void meatbol_runner_does_not_throw_IOException_when_given_valid_filepath() {
+        try {
+            String pathToSimpleForLoopCode = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
+            MeatbolRunner.runMeatbolInterpreter(pathToSimpleForLoopCode);
+        } catch (IOException e) {
+            fail("MeatbolRunner.runMeatbolInterpreter should not throw an IOException when given a valid filepath.");
+        }
+    }
+
+    @Test
+    void meatbol_runner_returns_interpreter_output_when_given_valid_filepath() throws IOException {
+        String pathToSimpleForLoopCode = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
+
+        String expectedOutput = "\t 0 \n" +
+                "\t 1 \n" +
+                "\t 2 \n" +
+                "ONLY ONE OF THESE SHOULD PRINT \n" +
+                "EOF         EMPTY        \n";
+
+        String actualOutput = MeatbolRunner.runMeatbolInterpreter(pathToSimpleForLoopCode);
+        assertEquals(expectedOutput, actualOutput);
+    }
 }
