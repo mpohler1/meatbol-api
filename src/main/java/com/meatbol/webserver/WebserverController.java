@@ -19,7 +19,7 @@ class WebserverController {
     @PostMapping(value = "/interpret", consumes = {"multipart/form-data"})
     MeatbolOutput interpret(@RequestParam("file")MultipartFile multipartFile) {
         try {
-            String filePath = request.getServletContext().getRealPath("/");
+            String filePath = request.getServletContext().getRealPath("/") + multipartFile.getName();
             multipartFile.transferTo(new File(filePath));
             String output = MeatbolRunner.runMeatbolInterpreter(filePath);
             return new MeatbolOutput(false, output);
