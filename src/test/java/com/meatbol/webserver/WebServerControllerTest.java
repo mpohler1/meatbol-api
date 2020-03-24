@@ -21,13 +21,13 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-class WebserverControllerTest {
+class WebServerControllerTest {
 
     @Mock
     private HttpServletRequest mockedRequest;
 
     @InjectMocks
-    private WebserverController controller;
+    private WebServerController controller;
 
     @BeforeEach
     void set_up() {
@@ -37,7 +37,7 @@ class WebserverControllerTest {
     }
 
     @Test
-    void webserver_controller_interpret_returns_meatbol_output_when_given_a_valid_file() throws IOException {
+    void web_server_controller_interpret_returns_meatbol_output_when_given_a_valid_file() throws IOException {
         String filePath = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
         File file = new File(filePath);
         InputStream inputStream = new FileInputStream(file);
