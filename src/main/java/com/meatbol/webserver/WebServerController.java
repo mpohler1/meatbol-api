@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @RestController
 class WebServerController {
+    private static final String TEMP_FILE_FOLDER_PATH_ENVIRONMENT_VARIABLE = "TEMP_FILE_FOLDER_PATH";
 
     @Autowired
     private HttpServletRequest request;
@@ -19,7 +20,7 @@ class WebServerController {
     @PostMapping(value = "/interpret", consumes = {"multipart/form-data"})
     MeatbolOutput interpret(@RequestParam("file")MultipartFile multipartFile) {
         try {
-            String filePath = request.getServletContext().getRealPath("/") + multipartFile.getName();
+            String filePath = System.getenv(TEMP_FILE_FOLDER_PATH_ENVIRONMENT_VARIABLE) + "/" + multipartFile.getName();
             multipartFile.transferTo(new File(filePath));
             String output = MeatbolRunner.runMeatbolInterpreter(filePath);
             return new MeatbolOutput(false, output);

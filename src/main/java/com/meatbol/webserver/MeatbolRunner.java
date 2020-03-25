@@ -7,9 +7,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 class MeatbolRunner {
+    private static final String INTERPRETER_JAR_PATH_ENVIRONMENT_VARIABLE = "INTERPRETER_JAR_PATH";
 
     static String runMeatbolInterpreter(String filepath) throws IOException {
-        String pathToJAR = System.getenv("PATH_TO_INTERPRETER_JAR");
+        String pathToJAR = System.getenv(INTERPRETER_JAR_PATH_ENVIRONMENT_VARIABLE);
 
         ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", pathToJAR, filepath);
         processBuilder.redirectErrorStream(true);
