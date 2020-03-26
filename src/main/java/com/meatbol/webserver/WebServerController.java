@@ -1,6 +1,7 @@
 package com.meatbol.webserver;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ class WebServerController {
     @Autowired
     private HttpServletRequest request;
 
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/interpret", consumes = {"multipart/form-data"})
     MeatbolOutput interpret(@RequestParam("file")MultipartFile multipartFile) {
         try {
