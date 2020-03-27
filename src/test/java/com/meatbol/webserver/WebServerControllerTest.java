@@ -1,37 +1,14 @@
 package com.meatbol.webserver;
 
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 class WebServerControllerTest {
-
-    @Mock
-    private HttpServletRequest mockedRequest;
-
-    @InjectMocks
-    private WebServerController controller;
-
-    @BeforeEach
-    void set_up() {
-        MockitoAnnotations.initMocks(this);
-        ServletContext mockServletContext = new MockServletContext();
-        when(mockedRequest.getServletContext()).thenReturn(mockServletContext);
-    }
 
     @Test
     void web_server_controller_interpret_file_returns_meatbol_output_when_given_a_valid_file() throws IOException {
@@ -52,7 +29,7 @@ class WebServerControllerTest {
                         "EOF         EMPTY        \n"
                 )
         );
-        MeatbolOutput actualMeatbolOutput = controller.interpretFile(multipartFile);
+        MeatbolOutput actualMeatbolOutput = WebServerController.interpretFile(multipartFile);
         assertEquals(expectedMeatbolOutput, actualMeatbolOutput);
     }
 
@@ -84,7 +61,7 @@ class WebServerControllerTest {
                         "EOF         EMPTY        \n"
                 )
         );
-        MeatbolOutput actualMeatbolOutput = controller.interpretText(meatbolText);
+        MeatbolOutput actualMeatbolOutput = WebServerController.interpretText(meatbolText);
         assertEquals(expectedMeatbolOutput, actualMeatbolOutput);
     }
 }

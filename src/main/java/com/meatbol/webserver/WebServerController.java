@@ -1,10 +1,8 @@
 package com.meatbol.webserver;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,12 +12,9 @@ import java.io.IOException;
 class WebServerController {
     private static final String TEMP_FILE_FOLDER_PATH_ENVIRONMENT_VARIABLE = "TEMP_FILE_FOLDER_PATH";
 
-    @Autowired
-    private HttpServletRequest request;
-
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/interpret/file", consumes = {"multipart/form-data"})
-    MeatbolOutput interpretFile(@RequestParam("file")MultipartFile multipartFile) {
+    static MeatbolOutput interpretFile(@RequestParam("file")MultipartFile multipartFile) {
         try {
             String filePath = System.getenv(TEMP_FILE_FOLDER_PATH_ENVIRONMENT_VARIABLE) + "/" + multipartFile.getName();
             multipartFile.transferTo(new File(filePath));
@@ -32,7 +27,7 @@ class WebServerController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/interpret/text", consumes = {"application/json"})
-    MeatbolOutput interpretText(@RequestBody String text) {
+    static MeatbolOutput interpretText(@RequestBody String text) {
         try {
             String tmpDirectory = System.getenv(TEMP_FILE_FOLDER_PATH_ENVIRONMENT_VARIABLE);
             File file = File.createTempFile("tmp", ".txt", new File(tmpDirectory));
