@@ -22,11 +22,10 @@ class WebServerControllerTest {
         MeatbolOutput expectedMeatbolOutput = new MeatbolOutput(
                 false,
                 (
-                        "\t 0 \n" +
-                        "\t 1 \n" +
-                        "\t 2 \n" +
-                        "ONLY ONE OF THESE SHOULD PRINT \n" +
-                        "EOF         EMPTY        \n"
+                        "\t 0\n" +
+                        "\t 1\n" +
+                        "\t 2\n" +
+                        "ONLY ONE OF THESE SHOULD PRINT\n"
                 )
         );
         MeatbolOutput actualMeatbolOutput = WebServerController.interpretFile(multipartFile);
@@ -54,11 +53,10 @@ class WebServerControllerTest {
         MeatbolOutput expectedMeatbolOutput = new MeatbolOutput(
                 false,
                 (
-                        "\t 0 \n" +
-                        "\t 1 \n" +
-                        "\t 2 \n" +
-                        "ONLY ONE OF THESE SHOULD PRINT \n" +
-                        "EOF         EMPTY        \n"
+                        "\t 0\n" +
+                        "\t 1\n" +
+                        "\t 2\n" +
+                        "ONLY ONE OF THESE SHOULD PRINT\n"
                 )
         );
         MeatbolOutput actualMeatbolOutput = WebServerController.interpretText(meatbolText);
