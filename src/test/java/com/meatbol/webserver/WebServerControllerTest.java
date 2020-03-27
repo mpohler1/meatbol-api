@@ -35,11 +35,13 @@ class WebServerControllerTest {
 
     @Test
     void web_server_controller_interpret_file_returns_meatbol_output_when_given_a_valid_file() throws IOException {
+        // Convert test File to MultipartFile
         String filePath = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
         File file = new File(filePath);
         InputStream inputStream = new FileInputStream(file);
         MultipartFile multipartFile = new MockMultipartFile(file.getName(), inputStream);
 
+        // Test
         MeatbolOutput expectedMeatbolOutput = new MeatbolOutput(
                 false,
                 (
