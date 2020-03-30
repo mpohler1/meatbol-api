@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 class MeatbolOutput {
-    private boolean ioError;
+    private boolean error;
     private String text;
 
-    MeatbolOutput(boolean ioError, String text) {
-        this.ioError = ioError;
+    MeatbolOutput(boolean error, String text) {
+        this.error = error;
         this.text = text;
     }
 }

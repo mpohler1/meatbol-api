@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 
 @RestController
 class WebServerController {
@@ -20,7 +19,7 @@ class WebServerController {
             multipartFile.transferTo(new File(filePath));
             String output = MeatbolRunner.runMeatbolInterpreter(filePath);
             return new MeatbolOutput(false, output);
-        } catch (IOException e) {
+        } catch (Exception e) {
             return new MeatbolOutput(true, e.getMessage());
         }
     }
@@ -39,7 +38,7 @@ class WebServerController {
 
             String output = MeatbolRunner.runMeatbolInterpreter(filePath);
             return new MeatbolOutput(false, output);
-        } catch (IOException e) {
+        } catch (Exception e) {
             return new MeatbolOutput(true, e.getMessage());
         }
     }
