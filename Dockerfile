@@ -5,4 +5,4 @@ ARG WEB_SERVER=target/*.jar
 ARG INTERPRETER=interpreter.jar
 COPY ${WEB_SERVER} webserver.jar
 COPY ${INTERPRETER} interpreter.jar
-ENTRYPOINT ["java", "-jar", "/webserver.jar"]
+ENTRYPOINT ["java", "-jar", "./webserver.jar"]

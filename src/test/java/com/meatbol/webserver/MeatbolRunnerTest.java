@@ -50,11 +50,10 @@ class MeatbolRunnerTest {
         String pathToSimpleForLoopCode = this.getClass().getClassLoader().getResource("simpleFor.txt").getPath();
 
         String expectedOutput = (
-                "\t 0 \n" +
-                "\t 1 \n" +
-                "\t 2 \n" +
-                "ONLY ONE OF THESE SHOULD PRINT \n" +
-                "EOF         EMPTY        \n"
+                "\t 0\n" +
+                "\t 1\n" +
+                "\t 2\n" +
+                "ONLY ONE OF THESE SHOULD PRINT\n"
         );
 
         String actualOutput = MeatbolRunner.runMeatbolInterpreter(pathToSimpleForLoopCode);
