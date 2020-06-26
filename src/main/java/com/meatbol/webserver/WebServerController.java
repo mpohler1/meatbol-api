@@ -11,7 +11,7 @@ import java.io.FileWriter;
 class WebServerController {
     private static final String TEMP_FILE_FOLDER_PATH_ENVIRONMENT_VARIABLE = "TEMP_FILE_FOLDER_PATH";
 
-    @CrossOrigin(origins = "https://www.masonpohler.com")
+    @CrossOrigin(origins = "https://mpohler1.github.io")
     @PostMapping(value = "/interpret/file", consumes = {"multipart/form-data"})
     static MeatbolOutput interpretFile(@RequestParam("file")MultipartFile multipartFile) {
         try {
@@ -24,7 +24,7 @@ class WebServerController {
         }
     }
 
-    @CrossOrigin(origins = "https://www.masonpohler.com")
+    @CrossOrigin(origins = "https://mpohler1.github.io")
     @PostMapping(value = "/interpret/text", consumes = {"application/json"})
     static MeatbolOutput interpretText(@RequestBody String text) {
         try {
